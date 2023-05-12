@@ -25,20 +25,30 @@ void* heap_top(Heap* pq){
 }
 
 
-
+void recorrerHeap(Heap* pq, int current){
+  if (current == 0){
+    return; // El elemento está en la raíz, no hay padre
+  }
+  
+  int parent=(current-1)/2;
+  if (pq->heapArray[current].priority>pq->heapArray[parent].priority){
+    heapElem aux=pq->heapArray[current];
+    pq->heapArray[current]=pq->heapArray[parent];
+    pq->heapArray[parent]=aux;
+    recorrerHeap(pq,parent);
+  }
+}
 
 void heap_push(Heap* pq, void* data, int p){
   if (pq->size == pq->capac){
     pq->capac *= 2;
-    pq->heapArray = (heapElem*) realloc(pq->heapArray, sizeof(heapElem) * pq->capac);
+    pq->heapArray=(heapElem*) realloc(pq->heapArray,sizeof(heapElem)*pq->capac);
   }
-  pq->heapArray[pq->size].data = data;
-  pq->heapArray[pq->size].priority = p;
+  pq->heapArray[pq->size].data=data;
+  pq->heapArray[pq->size].priority=p;
   recorrerHeap(pq, pq->size);
   pq->size++;
 }
-
-
 
 void heap_pop(Heap* pq){
 
