@@ -50,9 +50,23 @@ void heap_push(Heap* pq, void* data, int p){
   pq->size++;
 }
 
-void heap_pop(Heap* pq){
-
+void swap(heapElem* a, heapElem* b){
+  heapElem temp=*a;
+  *a=*b;
+  *b=temp;
 }
+
+void heap_pop(Heap* pq){
+  swap(&pq->heapArray[0], &pq->heapArray[pq->size-1]);
+  pq->size--;
+  heapify_down(pq, 0);
+  if(pq->size <= pq->capac/4){
+    int new_capacity = pq->capac/2;
+    pq->heapArray = realloc(pq->heapArray, sizeof(heapElem)*new_capacity);
+    pq->capac = new_capacity;
+  }
+}
+
 
 Heap* createHeap(){
   Heap* heap = (Heap*) malloc(sizeof(Heap));
