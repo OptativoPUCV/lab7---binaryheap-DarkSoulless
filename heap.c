@@ -18,8 +18,12 @@ typedef struct Heap{
 
 
 void* heap_top(Heap* pq){
+  if (pq == NULL || pq->size == 0) ¿{
     return NULL;
+  }
+  return pq->heapArray[0].data;
 }
+
 
 
 
@@ -28,13 +32,9 @@ void heap_push(Heap* pq, void* data, int priority){
 }
 
 
-void* heap_top(Heap* pq){
-  if (pq == NULL || pq->size == 0){
-    return NULL;
-  }
-  return pq->heapArray[0].data;
-}
+void heap_pop(Heap* pq){
 
+}
 
 Heap* createHeap(){
   Heap* heap = (Heap*) malloc(sizeof(Heap));
