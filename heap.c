@@ -40,8 +40,8 @@ void recorrerHeap(Heap* pq, int current){
 }
 
 void heap_push(Heap* pq, void* data, int p){
-  if (pq->size == pq->capac){
-    pq->capac *= 2;
+  if (pq->size==pq->capac){
+    pq->capac=(pq->capac*2)+1;
     pq->heapArray=(heapElem*) realloc(pq->heapArray,sizeof(heapElem)*pq->capac);
   }
   pq->heapArray[pq->size].data=data;
