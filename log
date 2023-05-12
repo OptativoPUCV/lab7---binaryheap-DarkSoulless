@@ -8,3 +8,15 @@ Fri 12 May 2023 02:19:53 AM UTC:
  tests:  1|3
 total_score: 10/70
 8c312b3
+Fri 12 May 2023 02:21:18 AM UTC: 
+ heap.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+In file included from test.c:4:
+heap.c:31:7: error: redefinition of ‘heap_top’
+   31 | void* heap_top(Heap* pq){
+      |       ^~~~~~~~
+heap.c:20:7: note: previous definition of ‘heap_top’ with type ‘void *(Heap *)’ {aka ‘void *(struct Heap *)’}
+   20 | void* heap_top(Heap* pq){
+      |       ^~~~~~~~
+Compilation failed
+3f809bd
